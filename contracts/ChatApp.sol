@@ -17,7 +17,15 @@ contract ChatApp {
     struct message {
         address sender;
         uint256 timeStamp;
+        string msg;
     }
+
+    struct allUsers {
+        string name;
+        address accountAddress;
+    }
+
+    allUsers[] getAllUsers;
 
     mapping (address => user) userList;
     mapping (bytes32 => message[]) allMessage;
@@ -28,11 +36,13 @@ contract ChatApp {
     }
 
     // Create New User
-    function createAccount(string calldata name)  external {
+    function createAccount(string calldata name) external {
         require(checkUserExists(msg.sender) == false, "User already exists");
         require(bytes(name).length > 0, "Username cannot be empty");
 
         userList[msg.sender].name = name;
+
+        getAllUsers.push(allUsers(name, msg.sender));
     }
 
     // Get Username
@@ -76,5 +86,34 @@ contract ChatApp {
     // Get friends list
     function getMyFriendList() external view returns (friend[] memory) {
         return userList[msg.sender].friendList;
+    }
+
+    // Get chat code
+    function _getChatCode(address pubkey1, address pubkey2) internal pure returns (bytes32) {
+        if (pubkey1 > pubkey2) {
+            return keccak256(abi.encodePacked(pubkey1, pubkey2));
+        } else return keccak256(abi.encodePacked(pubkey2, pubkey1));
+    }
+
+    // Send Message
+    function sendMessage(address friend_key, string calldata _msg) external {
+        require(checkUserExists(msg.sender), "Create an account first");
+        require(checkUserExists(friend_key), "User does not exists");
+        require(checkAlreadyFriend(msg.sender, friend_key), "You are not friend with this user");
+
+        bytes32 chatCode = _getChatCode(msg.sender, friend_key);
+        message memory newMsg = message(msg.sender, block.timestamp, _msg);
+        allMessage[chatCode].push(newMsg);
+    }
+
+    // Read Message
+    function readMessage(address friend_key) external view  returns (message[] memory) {
+        bytes32 chatCode = _getChatCode(msg.sender, friend_key);
+        return allMessage[chatCode];
+    }
+
+    // Get all app users
+    function getAllAppUsers() public view returns (allUsers[] memory) {
+        return getAllUsers;
     }
 }
