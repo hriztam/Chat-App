@@ -2,10 +2,6 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 contract ChatApp {
-    constructor() {
-        
-    }
-    
     // Structs
     struct user {
         string name;
@@ -39,4 +35,46 @@ contract ChatApp {
         userList[msg.sender].name = name;
     }
 
+    // Get Username
+    function getUserName(address pubkey) external view returns (string memory) {
+        require(checkUserExists(pubkey), "User is not registered");
+        return userList[pubkey].name;
+    }
+
+    // Add friend
+    function addFriend(address friend_key, string calldata name) external {
+        require(checkUserExists(msg.sender), "Create an account first");
+        require(checkUserExists(friend_key), "User does not exists");
+        require(msg.sender != friend_key, "You cannot befreind yourself");
+        require(checkAlreadyFriend(msg.sender, friend_key) == false, "These users are already friends");
+
+        _addFriend(msg.sender, friend_key, name);
+        _addFriend(friend_key, msg.sender, userList[msg.sender].name);
+    }
+
+    // checkAlreadyFriend
+    function checkAlreadyFriend(address pubkey1, address pubkey2) internal view returns (bool) {
+
+        if (userList[pubkey1].friendList.length > userList[pubkey2].friendList.length) {
+            address tmp = pubkey1;
+            pubkey1 = pubkey2;
+            pubkey2 = tmp;
+        }
+
+        for (uint i = 0; i < userList[pubkey1].friendList.length; i++) {
+            if (userList[pubkey1].friendList[i].pubkey == pubkey2) return true;
+        }
+        return false;
+    }
+
+    // internal add friend function
+    function _addFriend(address me, address friend_key, string memory name)  internal {
+        friend memory newFriend = friend(friend_key, name);
+        userList[me].friendList.push(newFriend);
+    }
+
+    // Get friends list
+    function getMyFriendList() external view returns (friend[] memory) {
+        return userList[msg.sender].friendList;
+    }
 }
