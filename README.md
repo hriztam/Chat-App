@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# IMPORTANT GUIDE
 
-## Getting Started
+@theblockchaincoders
 
-First, run the development server:
+Build your first web3 API start-up, in which you can provide users to upload the NFT to IPFS, and allow them to make API requests to fetch all the IPFS blockchain smart contract data.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Resource
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Final-Code: https://www.theblockchaincoders.com/sourceCode/blockchain-chat-dapp-project-source-code
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Starter-file: [https://github.com/daulathussain/nfts-api-starter-file](https://github.com/daulathussain/chat-dapp-starter-file)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Get Pro Course "AI Movie APP": https://bit.ly/AI-Movie-App-Course
 
-## Learn More
+Support Creator: https://bit.ly/Support-Creator
 
-To learn more about Next.js, take a look at the following resources:
+All Projects Source Code: https://www.theblockchaincoders.com/SourceCode
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Official Website: https://www.theblockchaincoders.com
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Book 1 -1 Appointment: https://bit.ly/Book-1-1-Appointment

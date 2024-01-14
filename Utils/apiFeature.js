@@ -1,7 +1,7 @@
 import { ethers } from "hardhat";
 import Web3Modal from "web3modal"; 
 
-import { ChatAppAddress, ChatAppABI } from "@/Context/constants";
+import { ChatAppAddress, ChatAppABI } from "../Context/constants";
 
 export const CheckWalletConnected = async () => {
     try {
