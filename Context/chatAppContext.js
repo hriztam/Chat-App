@@ -125,12 +125,14 @@ const ChatAppProvider = ({ children }) => {
     }
     return (
         <ChatAppContext.Provider
-            value = {{ 
+            value={{
                 readMessage,
                 createAccount,
                 addFriends,
                 sendMessage,
                 readUserInfo,
+                ConnectWallet,
+                CheckWalletConnected,
                 account,
                 userName,
                 friendLists,
