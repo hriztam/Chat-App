@@ -38,7 +38,7 @@ const NavBar = () => {
 
   const [active, setActive] = useState(2);
   const [open, setOpen] = useState(false);
-  const [openModel, setopenModel] = useState(false);
+  const [openModel, setOpenModel] = useState(false);
 
   const { account, userName, connectWallet } = useContext(ChatAppContext);
   return (
@@ -98,6 +98,33 @@ const NavBar = () => {
           )}
 
           {/* Connect Wallet */}
+          <div className={Style.navbar_box_right_connect}>
+            {account == "" ? (
+              <button onClick={() => connectWallet()}>
+                {""}
+                <span>Connect Wallet</span>
+              </button>
+            ) : (
+              <button onClick={() => setOpenModel(true)}>
+                {""}
+                <Image
+                  src={userName ? images.accountName : images.create2}
+                  alt="Account image"
+                  width={20}
+                  height={20}
+                />
+                {""}
+                <small>{userName || "Create Account"}</small>
+              </button>
+            )}
+          </div>
+
+          <div
+            className={Style.navbar_box_right_open}
+            onClick={() => setOpen(true)}
+          >
+            <Image src={images.open} alt="open" width={30} height={30} />
+          </div>
         </div>
       </div>
     </div>
